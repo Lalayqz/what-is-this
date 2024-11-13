@@ -1,0 +1,9 @@
+[gd_resource type="Theme" format=3 uid="uid://bqsc72t373p8a"]
+
+[resource]
+Label/colors/font_color = Color(0.858824, 0.756863, 0.686275, 1)
+Label/colors/font_shadow_color = Color(0.145098, 0.152941, 0.164706, 1)
+Label/constants/shadow_offset_x = 4
+Label/constants/shadow_offset_y = 4
+Label/constants/shadow_outline_size = 2
+Label/font_sizes/font_size = 100

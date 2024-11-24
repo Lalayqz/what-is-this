@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c0u4ddfk4cxda"]
+
+[ext_resource type="FontVariation" uid="uid://cnh6pw44lw1er" path="res://resources/fonts/input_text_font.tres" id="1_i0nq8"]
+
+[resource]
+Label/colors/font_color = Color(0.654902, 0.654902, 0.619608, 1)
+Label/colors/font_shadow_color = Color(0.654902, 0.654902, 0.619608, 1)
+Label/constants/shadow_offset_x = 3
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 28
+Label/font_sizes/font_size = 100
+Label/fonts/font = ExtResource("1_i0nq8")

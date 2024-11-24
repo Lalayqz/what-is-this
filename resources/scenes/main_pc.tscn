@@ -1,0 +1,341 @@
+[gd_scene load_steps=12 format=3 uid="uid://b6p8guhh12dup"]
+
+[ext_resource type="Script" path="res://resources/scripts/main.gd" id="1_grx63"]
+[ext_resource type="Texture2D" uid="uid://ptbqtpymfhoc" path="res://resources/images/background.png" id="2_e2ath"]
+[ext_resource type="Theme" uid="uid://dcd2k5geuagms" path="res://resources/styles/hint_text.tres" id="3_gtp0g"]
+[ext_resource type="Script" path="res://resources/scripts/panel.gd" id="4_beq8t"]
+[ext_resource type="StyleBox" uid="uid://dpsor6vsxd0np" path="res://resources/styles/border.tres" id="5_pr8ge"]
+[ext_resource type="Texture2D" uid="uid://dlml15kyg0fm0" path="res://resources/images/the_thing.png" id="6_tbjkt"]
+[ext_resource type="Script" path="res://resources/scripts/input.gd" id="7_2cdqt"]
+[ext_resource type="Theme" uid="uid://bqsc72t373p8a" path="res://resources/styles/input_text.tres" id="8_dvjfh"]
+[ext_resource type="Theme" uid="uid://c0u4ddfk4cxda" path="res://resources/styles/input_text_background.tres" id="9_ygr72"]
+[ext_resource type="Texture2D" uid="uid://bfthkq0xhaqn" path="res://resources/images/Underscore.png" id="10_4utl0"]
+
+[sub_resource type="SystemFont" id="SystemFont_shy3v"]
+
+[node name="Main" type="ReferenceRect"]
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("1_grx63")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_e2ath")
+centered = false
+
+[node name="ControlHint1" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_top = 720.0
+offset_right = 376.0
+offset_bottom = 755.0
+rotation = -1.5708
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 100
+
+[node name="ControlHint1" type="Label" parent="ControlHint1"]
+layout_mode = 2
+theme = ExtResource("3_gtp0g")
+text = "Move your mouse."
+
+[node name="ControlHint2" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_left = 1280.0
+offset_right = 1806.0
+offset_bottom = 85.0
+rotation = 1.5708
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 100
+
+[node name="ControlHint2" type="Label" parent="ControlHint2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_gtp0g")
+text = "Press your keys."
+
+[node name="UI" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 20.0
+offset_right = 1280.0
+offset_bottom = 720.0
+alignment = 1
+
+[node name="Title" type="CenterContainer" parent="UI"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="UI/Title"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.145098, 0.152941, 0.164706, 1)
+theme_override_colors/font_shadow_color = Color(0.145098, 0.152941, 0.164706, 1)
+theme_override_colors/font_outline_color = Color(0.145098, 0.152941, 0.164706, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = SubResource("SystemFont_shy3v")
+theme_override_font_sizes/font_size = 60
+text = "What  is  this ?"
+
+[node name="Panel" type="MarginContainer" parent="UI"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="Panel" type="CenterContainer" parent="UI/Panel"]
+layout_mode = 2
+script = ExtResource("4_beq8t")
+
+[node name="Border" type="Panel" parent="UI/Panel/Panel"]
+custom_minimum_size = Vector2(600, 350)
+layout_direction = 3
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_pr8ge")
+
+[node name="TheThing" type="Sprite2D" parent="UI/Panel/Panel/Border"]
+texture = ExtResource("6_tbjkt")
+centered = false
+
+[node name="SmallPixelDisplay" type="ColorRect" parent="UI/Panel/Panel/Border"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+color = Color(0.145098, 0.152941, 0.164706, 1)
+
+[node name="PixelDisplay" type="BoxContainer" parent="UI/Panel/Panel/Border"]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 350.0
+
+[node name="PixelDisplay" type="ColorRect" parent="UI/Panel/Panel/Border/PixelDisplay"]
+custom_minimum_size = Vector2(600, 350)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.145098, 0.152941, 0.164706, 1)
+
+[node name="Input" type="MarginContainer" parent="UI"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="Input" type="CenterContainer" parent="UI/Input"]
+layout_mode = 2
+
+[node name="Input" type="HBoxContainer" parent="UI/Input/Input"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+alignment = 1
+script = ExtResource("7_2cdqt")
+
+[node name="Letter1" type="CenterContainer" parent="UI/Input/Input/Input"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Letter" type="VSplitContainer" parent="UI/Input/Input/Input/Letter1"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Letter" type="CenterContainer" parent="UI/Input/Input/Input/Letter1/Letter"]
+layout_mode = 2
+
+[node name="Letter" type="MarginContainer" parent="UI/Input/Input/Input/Letter1/Letter/Letter"]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+
+[node name="Letter" type="Label" parent="UI/Input/Input/Input/Letter1/Letter/Letter/Letter"]
+z_index = 2
+layout_mode = 2
+theme = ExtResource("8_dvjfh")
+text = " "
+horizontal_alignment = 1
+
+[node name="LetterBackground" type="Label" parent="UI/Input/Input/Input/Letter1/Letter/Letter/Letter"]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+theme = ExtResource("9_ygr72")
+text = " "
+horizontal_alignment = 1
+
+[node name="Underscore" type="TextureRect" parent="UI/Input/Input/Input/Letter1/Letter"]
+layout_mode = 2
+texture = ExtResource("10_4utl0")
+stretch_mode = 3
+
+[node name="Letter2" type="CenterContainer" parent="UI/Input/Input/Input"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Letter" type="VSplitContainer" parent="UI/Input/Input/Input/Letter2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Letter" type="CenterContainer" parent="UI/Input/Input/Input/Letter2/Letter"]
+layout_mode = 2
+
+[node name="Letter" type="MarginContainer" parent="UI/Input/Input/Input/Letter2/Letter/Letter"]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+
+[node name="Letter" type="Label" parent="UI/Input/Input/Input/Letter2/Letter/Letter/Letter"]
+z_index = 2
+layout_mode = 2
+theme = ExtResource("8_dvjfh")
+text = " "
+horizontal_alignment = 1
+
+[node name="LetterBackground" type="Label" parent="UI/Input/Input/Input/Letter2/Letter/Letter/Letter"]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+theme = ExtResource("9_ygr72")
+text = " "
+horizontal_alignment = 1
+
+[node name="Underscore" type="TextureRect" parent="UI/Input/Input/Input/Letter2/Letter"]
+layout_mode = 2
+texture = ExtResource("10_4utl0")
+stretch_mode = 3
+
+[node name="Letter3" type="CenterContainer" parent="UI/Input/Input/Input"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Letter" type="VSplitContainer" parent="UI/Input/Input/Input/Letter3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Letter" type="CenterContainer" parent="UI/Input/Input/Input/Letter3/Letter"]
+layout_mode = 2
+
+[node name="Letter" type="MarginContainer" parent="UI/Input/Input/Input/Letter3/Letter/Letter"]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+
+[node name="Letter" type="Label" parent="UI/Input/Input/Input/Letter3/Letter/Letter/Letter"]
+z_index = 2
+layout_mode = 2
+theme = ExtResource("8_dvjfh")
+text = " "
+horizontal_alignment = 1
+
+[node name="LetterBackground" type="Label" parent="UI/Input/Input/Input/Letter3/Letter/Letter/Letter"]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+theme = ExtResource("9_ygr72")
+text = " "
+horizontal_alignment = 1
+
+[node name="Underscore" type="TextureRect" parent="UI/Input/Input/Input/Letter3/Letter"]
+layout_mode = 2
+texture = ExtResource("10_4utl0")
+stretch_mode = 3
+
+[node name="Letter4" type="CenterContainer" parent="UI/Input/Input/Input"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Letter" type="VSplitContainer" parent="UI/Input/Input/Input/Letter4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Letter" type="CenterContainer" parent="UI/Input/Input/Input/Letter4/Letter"]
+layout_mode = 2
+
+[node name="Letter" type="MarginContainer" parent="UI/Input/Input/Input/Letter4/Letter/Letter"]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+
+[node name="Letter" type="Label" parent="UI/Input/Input/Input/Letter4/Letter/Letter/Letter"]
+z_index = 2
+layout_mode = 2
+theme = ExtResource("8_dvjfh")
+text = " "
+horizontal_alignment = 1
+
+[node name="LetterBackground" type="Label" parent="UI/Input/Input/Input/Letter4/Letter/Letter/Letter"]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+theme = ExtResource("9_ygr72")
+text = " "
+horizontal_alignment = 1
+
+[node name="Underscore" type="TextureRect" parent="UI/Input/Input/Input/Letter4/Letter"]
+layout_mode = 2
+texture = ExtResource("10_4utl0")
+stretch_mode = 3
+
+[node name="Letter5" type="CenterContainer" parent="UI/Input/Input/Input"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Letter" type="VSplitContainer" parent="UI/Input/Input/Input/Letter5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Letter" type="CenterContainer" parent="UI/Input/Input/Input/Letter5/Letter"]
+layout_mode = 2
+
+[node name="Letter" type="MarginContainer" parent="UI/Input/Input/Input/Letter5/Letter/Letter"]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+
+[node name="Letter" type="Label" parent="UI/Input/Input/Input/Letter5/Letter/Letter/Letter"]
+z_index = 2
+layout_mode = 2
+theme = ExtResource("8_dvjfh")
+text = " "
+horizontal_alignment = 1
+
+[node name="LetterBackground" type="Label" parent="UI/Input/Input/Input/Letter5/Letter/Letter/Letter"]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+theme = ExtResource("9_ygr72")
+text = " "
+horizontal_alignment = 1
+
+[node name="Underscore" type="TextureRect" parent="UI/Input/Input/Input/Letter5/Letter"]
+layout_mode = 2
+texture = ExtResource("10_4utl0")
+stretch_mode = 3
+
+[node name="Letter6" type="CenterContainer" parent="UI/Input/Input/Input"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Letter" type="VSplitContainer" parent="UI/Input/Input/Input/Letter6"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Letter" type="CenterContainer" parent="UI/Input/Input/Input/Letter6/Letter"]
+layout_mode = 2
+
+[node name="Letter" type="MarginContainer" parent="UI/Input/Input/Input/Letter6/Letter/Letter"]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+
+[node name="Letter" type="Label" parent="UI/Input/Input/Input/Letter6/Letter/Letter/Letter"]
+z_index = 2
+layout_mode = 2
+theme = ExtResource("8_dvjfh")
+text = " "
+horizontal_alignment = 1
+
+[node name="LetterBackground" type="Label" parent="UI/Input/Input/Input/Letter6/Letter/Letter/Letter"]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+theme = ExtResource("9_ygr72")
+text = " "
+horizontal_alignment = 1
+
+[node name="Underscore" type="TextureRect" parent="UI/Input/Input/Input/Letter6/Letter"]
+layout_mode = 2
+texture = ExtResource("10_4utl0")
+stretch_mode = 3

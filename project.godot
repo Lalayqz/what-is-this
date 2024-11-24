@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="What_Is_This"
-run/main_scene="res://main.tscn"
+run/main_scene="res://resources/scenes/root.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalVariables="*res://resources/scripts/global_variables.gd"
 
 [display]
 
@@ -25,3 +29,4 @@ window/stretch/mode="canvas_items"
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

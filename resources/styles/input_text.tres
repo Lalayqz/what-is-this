@@ -1,4 +1,6 @@
-[gd_resource type="Theme" format=3 uid="uid://bqsc72t373p8a"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bqsc72t373p8a"]
+
+[ext_resource type="FontVariation" uid="uid://cnh6pw44lw1er" path="res://resources/fonts/input_text_font.tres" id="1_0yos3"]
 
 [resource]
 Label/colors/font_color = Color(0.858824, 0.756863, 0.686275, 1)
@@ -7,3 +9,4 @@ Label/constants/shadow_offset_x = 4
 Label/constants/shadow_offset_y = 4
 Label/constants/shadow_outline_size = 2
 Label/font_sizes/font_size = 100
+Label/fonts/font = ExtResource("1_0yos3")

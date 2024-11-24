@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb0nesafy3ty0"]
+
+[ext_resource type="Theme" uid="uid://dcd2k5geuagms" path="res://resources/styles/hint_text.tres" id="1_lvnlf"]
+[ext_resource type="Script" path="res://resources/scripts/reveal_text.gd" id="2_blkqy"]
+
+[node name="Hint3" type="VBoxContainer"]
+custom_minimum_size = Vector2(1280, 200)
+offset_right = 1280.0
+offset_bottom = 200.0
+
+[node name="Line1" type="RichTextLabel" parent="."]
+layout_mode = 2
+theme = ExtResource("1_lvnlf")
+bbcode_enabled = true
+text = "[center][u][i]It has been 60 minutes! I'll just tell you the mechanic of this puzzle (%s to reveal):[/i][/u][/center]"
+fit_content = true
+
+[node name="Line2" type="CenterContainer" parent="."]
+layout_mode = 2
+script = ExtResource("2_blkqy")
+
+[node name="Text" type="Label" parent="Line2"]
+layout_mode = 2
+theme = ExtResource("1_lvnlf")
+text = "There is an image in the center area. When your cursor hovers over a pixel of the image, the whole image turns into the color of that pixel."
+
+[node name="Cover" type="ColorRect" parent="Line2"]
+layout_mode = 2
+color = Color(0.145098, 0.152941, 0.164706, 1)

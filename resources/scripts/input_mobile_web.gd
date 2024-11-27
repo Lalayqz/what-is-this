@@ -25,16 +25,18 @@ func _ready() -> void:
 
 
 func _input(event):
-	if not is_solved and event is InputEventKey and event.is_pressed():
+	if event is InputEventKey and event.keycode == KEY_P:
+		virtual_keyboard_shown.emit()
+	# For mobile web, key input is InputEventKey, but not is_pressed()
+	if not is_solved and event is InputEventKey and event.is_pressed() and false:
 		var input_key = OS.get_keycode_string(event.keycode)
 		var inputed = false
 		
 		# Character input
 		# For pc, I have to check event.unicode != 0, because when using ctrl+C or ctrl+V, event.unicode == 0.
 		# However, for mobile on web, event.unicode is always 0.
-		if event.unicode != 0:
-			if event.keycode >= KEY_A and event.keycode <= KEY_Z:
-				inputed = append_to_input(input_key)
+		if event.keycode >= KEY_A and event.keycode <= KEY_Z:
+			inputed = append_to_input(input_key)
 			
 		# Backspace
 		elif event.keycode == KEY_BACKSPACE:
@@ -87,12 +89,13 @@ func _process(delta: float) -> void:
 
 # Returns false if nothing is appended.
 func append_to_input(string) -> bool:
-	if len(word) == max_word_length:
+	if len(word) == max_word_length + 1:
 		return false
 	
 	word += string.to_lower()
-	word = word.left(max_word_length)
-	if len(word) > 0:
+	if len(word) > max_word_length + 1:
+		word = word.substr(0, max_word_length) + word[len(word) - 1]
+	if len(word) > 1:
 		word[0] = word[0].to_upper()
 	return true
 
@@ -100,7 +103,7 @@ func append_to_input(string) -> bool:
 func update_display() -> void:
 	var i = 0
 	for input_letter in input_letters:
-		if i < len(word):
+		if i < len(word) and word[i] != '#':
 			set_letter(input_letters[i], word[i])
 		else:
 			set_letter(input_letters[i], ' ')
@@ -115,8 +118,8 @@ func set_letter(container, letter) -> void:
 func check_answer() -> void:
 	answer_check_in_queue = false
 	
-	if len(word) == max_word_length:
-		if word == ANSWER:
+	if len(word) == max_word_length + 1:
+		if word.substr(0, max_word_length) == ANSWER:
 			answer_answered.emit()
 			
 			is_solved = true
@@ -134,3 +137,27 @@ func set_text_color(color) -> void:
 	for container in input_letters:
 		for label in container.get_children():
 			label.set('theme_override_colors/font_color', color)
+
+
+# for mobile web only.
+func format_line_edit(_str, line_edit):
+	var string_with_letters = ''
+	for ch in line_edit.text:
+		if ('A' <= ch and ch <= 'Z') or ('a' <= ch and ch <= 'z') or ch == line_edit.text[-1]:
+			string_with_letters += ch
+	
+	var old_word = word
+	word = ''
+	append_to_input(string_with_letters)
+	line_edit.text = word
+	line_edit.caret_column = len(line_edit.text) - 1 # Because after changing text, the caret somehow goes to position 0.
+	
+	if word != old_word and not answer_check_in_queue:
+		word = line_edit.text
+		call_deferred('update_display')
+		call_deferred('check_answer')
+
+
+# for mobile web only.
+func move_line_edit_caret(_input_event, line_edit):
+	line_edit.caret_column = len(line_edit.text) - 1

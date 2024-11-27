@@ -7,10 +7,6 @@ extends Node
 @onready var pixel_display_default_color = pixel_display.color
 
 
-func _ready() -> void:
-	pass
-
-
 func _input(event) -> void:
 	if event is InputEventMouseMotion:
 		var relative_mouse_position = event.position - the_thing.global_position
@@ -22,7 +18,3 @@ func _input(event) -> void:
 			color = pixel_display_default_color
 		pixel_display.color = color
 		small_pixel_display.color = color
-
-
-func _process(delta: float) -> void:
-	pass

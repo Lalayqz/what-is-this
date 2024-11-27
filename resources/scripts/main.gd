@@ -9,12 +9,14 @@ const HINT_FADE_GAP = 0.5
 @onready var input = $UI/Head/Input/Input if GlobalVariables.is_mobile else $UI/Input/Input/Input
 @onready var pixel_display = $UI/Panel/Panel/Border/PixelDisplay/PixelDisplay
 @onready var conclusion = $UI/Conclusion/Conclusion/Conclusion if GlobalVariables.is_mobile else null
+@onready var line_edit = $LineEdit if GlobalVariables.is_mobile_on_web else null
 var hint_sound = preload("res://resources/sounds/hint.wav")
 var is_solved = false
 var time_elapsed = 0
 var current_hint_level = 0
 var current_hint_node = null
 var hint_tween
+var last_line_edit_text = '' # For mobile web only.
 
 
 func _ready() -> void:
@@ -23,9 +25,18 @@ func _ready() -> void:
 		input.virtual_keyboard_shown.connect(switch_to_show_input)
 		input.virtual_keyboard_hid.connect(switch_to_show_title)
 		switch_to_show_title()
+	if GlobalVariables.is_mobile_on_web:
+		# BUG text_changed() not emitting. (https://github.com/godotengine/godot/issues/64590)
+		#line_edit.text_changed.connect(input.format_line_edit.bind(line_edit))
+		#line_edit.gui_input.connect(input.move_line_edit_caret.bind(line_edit))
+		
+		#line_edit.gui_input.connect(input.format_line_edit.bind(line_edit))
+		pass
 
 
 func _process(delta: float) -> void:
+	if GlobalVariables.is_mobile_on_web:
+		line_edit.caret_column = len(line_edit.text) - 1
 	if not is_solved and current_hint_level < len(HINT_TIME):
 		time_elapsed += delta
 		
@@ -35,6 +46,13 @@ func _process(delta: float) -> void:
 			to_update_hint = true
 		if to_update_hint:
 			update_hint()
+
+
+func _input(event) -> void:
+	# Listener for line edit
+	if GlobalVariables.is_mobile_on_web and event is InputEventKey and last_line_edit_text != line_edit.text:
+		input.call_deferred("format_line_edit", '', line_edit)
+		last_line_edit_text = line_edit.text
 
 
 func update_hint():
@@ -56,6 +74,9 @@ func add_hint_node():
 	var hint_node = load("res://resources/scenes/hint" + str(current_hint_level) + ".tscn").instantiate()
 	var line1 = hint_node.get_node("Line1")
 	line1.text = line1.text % "tap" if GlobalVariables.is_mobile else line1.text % "hover"
+	if current_hint_level == 3:
+		var line2 = hint_node.get_node("Line2/Text")
+		line2.text = line2.text % "your finger" if GlobalVariables.is_mobile else line2.text % "the cursor"
 	
 	add_child(hint_node)
 	current_hint_node = hint_node

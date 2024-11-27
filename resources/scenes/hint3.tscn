@@ -12,7 +12,7 @@ offset_bottom = 200.0
 layout_mode = 2
 theme = ExtResource("1_lvnlf")
 bbcode_enabled = true
-text = "[center][u][i]It has been 60 minutes! I'll just tell you the mechanic of this puzzle (%s to reveal):[/i][/u][/center]"
+text = "[center][u][i]It has been 60 minutes! Here's a final hint (%s to reveal):[/i][/u][/center]"
 fit_content = true
 
 [node name="Line2" type="CenterContainer" parent="."]
@@ -22,7 +22,9 @@ script = ExtResource("2_blkqy")
 [node name="Text" type="Label" parent="Line2"]
 layout_mode = 2
 theme = ExtResource("1_lvnlf")
-text = "There is an image in the center area. When your cursor hovers over a pixel of the image, the whole image turns into the color of that pixel."
+text = "There is an image in the center area. However, only one pixel is displayed at a time.
+The pixel displayed is dependent on the position of %s."
+horizontal_alignment = 1
 
 [node name="Cover" type="ColorRect" parent="Line2"]
 layout_mode = 2

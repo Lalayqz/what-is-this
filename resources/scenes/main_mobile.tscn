@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://resources/scripts/input.gd" id="4_mf3fj"]
 [ext_resource type="Theme" uid="uid://bqsc72t373p8a" path="res://resources/styles/input_text.tres" id="5_wr4py"]
 [ext_resource type="Theme" uid="uid://c0u4ddfk4cxda" path="res://resources/styles/input_text_background.tres" id="6_ve2fp"]
-[ext_resource type="Texture2D" uid="uid://bfthkq0xhaqn" path="res://resources/images/Underscore.png" id="7_4hf5a"]
+[ext_resource type="Texture2D" uid="uid://bfthkq0xhaqn" path="res://resources/images/underscore.png" id="7_4hf5a"]
 [ext_resource type="Script" path="res://resources/scripts/panel.gd" id="8_g1kyr"]
 [ext_resource type="StyleBox" uid="uid://dpsor6vsxd0np" path="res://resources/styles/border.tres" id="9_d50ye"]
 [ext_resource type="Texture2D" uid="uid://dlml15kyg0fm0" path="res://resources/images/the_thing.png" id="10_rbbkq"]
@@ -36,7 +36,7 @@ theme_override_constants/margin_top = 100
 [node name="ControlHint1" type="Label" parent="ControlHint1"]
 layout_mode = 2
 theme = ExtResource("3_rwpt3")
-text = "Swipe you finger."
+text = "Swipe your finger."
 
 [node name="ControlHint2" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -79,7 +79,6 @@ text = "What  is  this ?"
 layout_mode = 2
 
 [node name="Input" type="HBoxContainer" parent="UI/Head/Input"]
-custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 alignment = 1
 script = ExtResource("4_mf3fj")
@@ -310,7 +309,6 @@ script = ExtResource("8_g1kyr")
 
 [node name="Border" type="Panel" parent="UI/Panel/Panel"]
 custom_minimum_size = Vector2(600, 350)
-layout_direction = 3
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_d50ye")
 
@@ -320,16 +318,18 @@ centered = false
 
 [node name="SmallPixelDisplay" type="ColorRect" parent="UI/Panel/Panel/Border"]
 layout_mode = 0
-offset_left = 20.0
+offset_left = 540.0
 offset_top = 20.0
-offset_right = 60.0
+offset_right = 580.0
 offset_bottom = 60.0
 color = Color(0.145098, 0.152941, 0.164706, 1)
 
 [node name="PixelDisplay" type="BoxContainer" parent="UI/Panel/Panel/Border"]
+layout_direction = 3
 layout_mode = 0
 offset_right = 600.0
 offset_bottom = 350.0
+alignment = 2
 
 [node name="PixelDisplay" type="ColorRect" parent="UI/Panel/Panel/Border/PixelDisplay"]
 custom_minimum_size = Vector2(600, 350)

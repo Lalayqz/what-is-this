@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://resources/scripts/input.gd" id="7_2cdqt"]
 [ext_resource type="Theme" uid="uid://bqsc72t373p8a" path="res://resources/styles/input_text.tres" id="8_dvjfh"]
 [ext_resource type="Theme" uid="uid://c0u4ddfk4cxda" path="res://resources/styles/input_text_background.tres" id="9_ygr72"]
-[ext_resource type="Texture2D" uid="uid://bfthkq0xhaqn" path="res://resources/images/Underscore.png" id="10_4utl0"]
+[ext_resource type="Texture2D" uid="uid://bfthkq0xhaqn" path="res://resources/images/underscore.png" id="10_4utl0"]
 
 [sub_resource type="SystemFont" id="SystemFont_shy3v"]
 
@@ -46,7 +46,6 @@ theme_override_constants/margin_left = 70
 theme_override_constants/margin_top = 100
 
 [node name="ControlHint2" type="Label" parent="ControlHint2"]
-unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_gtp0g")
 text = "Press your keys."
@@ -84,7 +83,6 @@ script = ExtResource("4_beq8t")
 
 [node name="Border" type="Panel" parent="UI/Panel/Panel"]
 custom_minimum_size = Vector2(600, 350)
-layout_direction = 3
 layout_mode = 2
 theme_override_styles/panel = ExtResource("5_pr8ge")
 
@@ -94,9 +92,9 @@ centered = false
 
 [node name="SmallPixelDisplay" type="ColorRect" parent="UI/Panel/Panel/Border"]
 layout_mode = 0
-offset_left = 20.0
+offset_left = 540.0
 offset_top = 20.0
-offset_right = 60.0
+offset_right = 580.0
 offset_bottom = 60.0
 color = Color(0.145098, 0.152941, 0.164706, 1)
 
@@ -104,11 +102,11 @@ color = Color(0.145098, 0.152941, 0.164706, 1)
 layout_mode = 0
 offset_right = 600.0
 offset_bottom = 350.0
+alignment = 2
 
 [node name="PixelDisplay" type="ColorRect" parent="UI/Panel/Panel/Border/PixelDisplay"]
 custom_minimum_size = Vector2(600, 350)
 layout_mode = 2
-size_flags_horizontal = 4
 color = Color(0.145098, 0.152941, 0.164706, 1)
 
 [node name="Input" type="MarginContainer" parent="UI"]
@@ -119,7 +117,6 @@ theme_override_constants/margin_top = 30
 layout_mode = 2
 
 [node name="Input" type="HBoxContainer" parent="UI/Input/Input"]
-custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 alignment = 1
 script = ExtResource("7_2cdqt")

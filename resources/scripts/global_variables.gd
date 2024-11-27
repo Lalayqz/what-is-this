@@ -1,7 +1,7 @@
 extends Node
 
-var is_mobile_on_web = OS.has_feature("web_android") or OS.has_feature("web_ios")
-var is_mobile = is_mobile_on_web or OS.has_feature("mobile")
+var is_mobile_on_web = OS.has_feature("web_android") or OS.has_feature("web_ios") or true
+var is_mobile = is_mobile_on_web or OS.has_feature("mobile") or true
 
 
 func play_sound(sound):

@@ -19,7 +19,3 @@ func hide_cover():
 func show_cover():
 	cover.modulate.a = 1
 	text.hide()  # So that the text cannot be seen when the cover is translucent (when the hint is fading in/out)
-
-
-func _process(delta):
-	pass

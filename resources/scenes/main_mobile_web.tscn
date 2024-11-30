@@ -34,10 +34,9 @@ theme_override_constants/margin_left = 70
 theme_override_constants/margin_top = 100
 
 [node name="ControlHint1" type="Label" parent="ControlHint1"]
-unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_ngb83")
-text = "Swipe you finger."
+text = "Swipe your finger."
 
 [node name="ControlHint2" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -55,7 +54,7 @@ text = "Tap your finger, then press your keys."
 
 [node name="UI" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_top = 20.0
+offset_top = 70.0
 offset_right = 1280.0
 offset_bottom = 720.0
 alignment = 1
@@ -357,10 +356,11 @@ theme_override_font_sizes/font_size = 60
 text = "It  is  a  banana !"
 
 [node name="LineEdit" type="LineEdit" parent="."]
-modulate = Color(1, 1, 1, 0.470588)
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
+offset_top = -441.0
 offset_right = 1280.0
-offset_bottom = 208.0
-text = "#"
+offset_bottom = 720.0
+max_length = 6
 virtual_keyboard_enabled = false
 selecting_enabled = false

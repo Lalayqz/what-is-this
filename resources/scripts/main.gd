@@ -1,8 +1,8 @@
 extends Node
 
 const SOLVE_DUARTION = 0.5
-#const HINT_TIME = [15 * 60, 30 * 60, 60 * 60] # 15min, 30min, 60min
-const HINT_TIME = [15, 30, 60] # 15min, 30min, 60min
+const HINT_TIME = [15 * 60, 30 * 60, 60 * 60] # 15min, 30min, 60min
+#const HINT_TIME = [15, 30, 60] # 15s, 30s, 60s
 const HINT_FADE_DURATION = 1
 const HINT_FADE_GAP = 0.5
 @onready var title = $UI/Head/Title if GlobalVariables.is_mobile else $UI/Title/Title
@@ -27,7 +27,7 @@ func _ready() -> void:
 		switch_to_show_title()
 	if GlobalVariables.is_mobile_on_web:
 		# BUG text_changed() not emitting. (https://github.com/godotengine/godot/issues/64590)
-		#line_edit.text_changed.connect(input.format_line_edit.bind(line_edit))
+		line_edit.text_changed.connect(input.format_line_edit.bind(line_edit))
 		#line_edit.gui_input.connect(input.move_line_edit_caret.bind(line_edit))
 		
 		#line_edit.gui_input.connect(input.format_line_edit.bind(line_edit))
@@ -35,8 +35,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if GlobalVariables.is_mobile_on_web:
-		line_edit.caret_column = len(line_edit.text) - 1
 	if not is_solved and current_hint_level < len(HINT_TIME):
 		time_elapsed += delta
 		
@@ -46,11 +44,9 @@ func _process(delta: float) -> void:
 			to_update_hint = true
 		if to_update_hint:
 			update_hint()
-
-
-func _input(event) -> void:
+	
 	# Listener for line edit
-	if GlobalVariables.is_mobile_on_web and event is InputEventKey and last_line_edit_text != line_edit.text:
+	if GlobalVariables.is_mobile_on_web and last_line_edit_text != line_edit.text:
 		input.call_deferred("format_line_edit", '', line_edit)
 		last_line_edit_text = line_edit.text
 
@@ -99,6 +95,7 @@ func solve() -> void:
 		conclusion.modulate.a = 1
 	else:
 		title.text = "It  is  a  banana !"
+	DisplayServer.virtual_keyboard_hide()
 
 
 # For mobile only.
@@ -106,6 +103,8 @@ func switch_to_show_title():
 	if not is_solved:
 		title.modulate.a = 1
 		input.modulate.a = 0
+		if line_edit != null:
+			line_edit.text = ''
 
 
 # For mobile only.

@@ -10,6 +10,7 @@ const CORRECT_COLOR = Color(0xb2af5cff)
 const MAX_TAP_HOLD_TIME = 0.2
 @onready var max_word_length = len(get_children())
 @onready var wrong_buzz = preload("res://resources/sounds/wrong.wav")
+@onready var correct_sound = preload("res://resources/sounds/correct.wav")
 var word = ''
 var input_letters = []
 var is_solved = false
@@ -31,8 +32,8 @@ func _input(event):
 		
 		# Character input
 		# For pc, I have to check event.unicode != 0, because when using ctrl+C or ctrl+V, event.unicode == 0.
-		# However, for mobile on web, event.unicode is always 0.
-		if event.unicode != 0:
+		# However, for web, event.unicode is always 0.
+		if event.unicode != 0 and not Input.is_key_pressed(KEY_CTRL):
 			if event.keycode >= KEY_A and event.keycode <= KEY_Z:
 				inputed = append_to_input(input_key)
 			
@@ -90,7 +91,10 @@ func append_to_input(string) -> bool:
 	if len(word) == max_word_length:
 		return false
 	
-	word += string.to_lower()
+	for character in string:
+		var lower_character = character.to_lower()
+		if lower_character >= 'a' and character <= 'z':
+			word += lower_character
 	word = word.left(max_word_length)
 	if len(word) > 0:
 		word[0] = word[0].to_upper()
@@ -121,6 +125,7 @@ func check_answer() -> void:
 			
 			is_solved = true
 			set_text_color(CORRECT_COLOR)
+			GlobalVariables.play_sound(correct_sound)
 			if GlobalVariables.is_mobile:
 				DisplayServer.virtual_keyboard_hide()
 		else:

@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 		touch_hold_counter += delta
 	
 	# Listener for line edit.
-	# Keep the text of line edit in sync of the buffer of virtual keyborad
+	# Keep the text of line edit in sync of the buffer of virtual keyborad.
 	# Change word accordingly (append/remove) when line edit changes.
 	# Also text format only happens on word, not on line edit.
 	if GlobalVariables.is_mobile_on_web:

@@ -36,7 +36,7 @@ theme_override_constants/margin_top = 100
 [node name="ControlHint1" type="Label" parent="ControlHint1"]
 layout_mode = 2
 theme = ExtResource("3_rwpt3")
-text = "Swipe your finger."
+text = "Swipe your finger to navigate."
 
 [node name="ControlHint2" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -50,7 +50,7 @@ theme_override_constants/margin_top = 100
 [node name="ControlHint2" type="Label" parent="ControlHint2"]
 layout_mode = 2
 theme = ExtResource("3_rwpt3")
-text = "Tap your finger, then press your keys."
+text = "Tap your finger, then press the keys to answer."
 
 [node name="UI" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -308,7 +308,6 @@ script = ExtResource("8_g1kyr")
 
 [node name="Border" type="Panel" parent="UI/Panel/Panel"]
 custom_minimum_size = Vector2(600, 350)
-layout_direction = 2
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_d50ye")
 
@@ -325,7 +324,6 @@ offset_bottom = 60.0
 color = Color(0.145098, 0.152941, 0.164706, 1)
 
 [node name="PixelDisplay" type="BoxContainer" parent="UI/Panel/Panel/Border"]
-layout_direction = 3
 layout_mode = 0
 offset_right = 600.0
 offset_bottom = 350.0

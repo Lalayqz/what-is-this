@@ -36,7 +36,7 @@ theme_override_constants/margin_top = 100
 [node name="ControlHint1" type="Label" parent="ControlHint1"]
 layout_mode = 2
 theme = ExtResource("3_ngb83")
-text = "Swipe your finger."
+text = "Swipe your finger to navigate."
 
 [node name="ControlHint2" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -50,7 +50,7 @@ theme_override_constants/margin_top = 100
 [node name="ControlHint2" type="Label" parent="ControlHint2"]
 layout_mode = 2
 theme = ExtResource("3_ngb83")
-text = "Tap your finger, then press your keys."
+text = "Tap your finger, then press the keys to answer."
 
 [node name="UI" type="VBoxContainer" parent="."]
 layout_mode = 0

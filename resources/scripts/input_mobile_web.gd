@@ -18,6 +18,9 @@ var is_touched = false
 var touch_hold_counter = 0
 var virtual_keyboard_is_shown = false
 var answer_check_in_queue = false
+# For mobile web only.
+var line_edit
+var last_line_edit_text = ''
 
 
 func _ready() -> void:
@@ -53,6 +56,29 @@ func _input(event):
 func _process(delta: float) -> void:
 	if is_touched:
 		touch_hold_counter += delta
+	
+	# Listener for line edit.
+	# Keep the text of line edit in sync of the buffer of virtual keyborad
+	# Change word accordingly (append/remove) when line edit changes.
+	# Also text format only happens on word, not on line edit.
+	if GlobalVariables.is_mobile_on_web:
+		var old_length = len(last_line_edit_text)
+		var new_length = len(line_edit.text)
+		var inputed = false
+		
+		# Append text to word.
+		if new_length > old_length:
+			inputed = append_to_input(line_edit.text.right(new_length - old_length))
+		# Delete text from word.
+		elif new_length < old_length and len(word) > 0:
+			word = word.left(-1)
+			inputed = true
+			
+		if inputed and not answer_check_in_queue:
+			answer_check_in_queue = true
+			call_deferred('update_display')
+			call_deferred('check_answer')
+		last_line_edit_text = line_edit.text
 
 
 # Returns false if nothing is appended.
@@ -129,6 +155,6 @@ func format_line_edit(_str, line_edit):
 		call_deferred('check_answer')
 
 
-# for mobile web only.
+# for mobile web only. Not affecting input though.
 func move_line_edit_caret(_input_event, line_edit):
 	line_edit.caret_column = len(line_edit.text)

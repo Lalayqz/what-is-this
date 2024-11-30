@@ -16,7 +16,6 @@ var time_elapsed = 0
 var current_hint_level = 0
 var current_hint_node = null
 var hint_tween
-var last_line_edit_text = '' # For mobile web only.
 
 
 func _ready() -> void:
@@ -26,8 +25,9 @@ func _ready() -> void:
 		input.virtual_keyboard_hid.connect(switch_to_show_title)
 		switch_to_show_title()
 	if GlobalVariables.is_mobile_on_web:
+		input.line_edit = line_edit
 		# BUG text_changed() not emitting. (https://github.com/godotengine/godot/issues/64590)
-		line_edit.text_changed.connect(input.format_line_edit.bind(line_edit))
+		#line_edit.text_changed.connect(input.format_line_edit.bind(line_edit))
 		#line_edit.gui_input.connect(input.move_line_edit_caret.bind(line_edit))
 		
 		#line_edit.gui_input.connect(input.format_line_edit.bind(line_edit))
@@ -44,11 +44,6 @@ func _process(delta: float) -> void:
 			to_update_hint = true
 		if to_update_hint:
 			update_hint()
-	
-	# Listener for line edit
-	if GlobalVariables.is_mobile_on_web and last_line_edit_text != line_edit.text:
-		input.call_deferred("format_line_edit", '', line_edit)
-		last_line_edit_text = line_edit.text
 
 
 func update_hint():

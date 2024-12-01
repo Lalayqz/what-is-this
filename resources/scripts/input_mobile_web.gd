@@ -22,6 +22,8 @@ var answer_check_in_queue = false
 var line_edit
 var last_line_edit_text = ''
 
+# Why I didn't use Godot 3 for html build:
+# In Godot 3 html mobile build, when backspace key is pressed on virtual keyboard, text of line edit doesn't change.
 
 func _ready() -> void:
 	for letter in get_children():

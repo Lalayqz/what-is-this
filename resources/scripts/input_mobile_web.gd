@@ -22,8 +22,14 @@ var answer_check_in_queue = false
 var line_edit
 var last_line_edit_text = ''
 
-# Why I didn't use Godot 3 for html build:
+# Why I don't use Godot 3 for html build:
 # In Godot 3 html mobile build, when backspace key is pressed on virtual keyboard, text of line edit doesn't change.
+
+# Why I use a large lineEdit to cover the whole screen, instead of listening to virtual keyboard input:
+# Any virtual keyboard input only gives out a single "Right" key pressed event.
+
+# Why I only listen to lineEdit and keep a "word" variable elsewhere, instead of keeping the lineEdit text formatted:
+# Any attempt to move the cursor of the lineEdit puts the cursor at the beginning of the text.
 
 func _ready() -> void:
 	for letter in get_children():

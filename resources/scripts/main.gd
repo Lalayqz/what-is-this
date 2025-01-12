@@ -1,7 +1,7 @@
 extends Node
 
 const SOLVE_DUARTION = 0.5
-const HINT_TIME = [15 * 60, 30 * 60, 60 * 60] # 15min, 30min, 60min
+const HINT_TIME = [10 * 60, 20 * 60, 40 * 60] # 10min, 20min, 40min
 #const HINT_TIME = [15, 30, 60] # 15s, 30s, 60s
 const HINT_FADE_DURATION = 1
 const HINT_FADE_GAP = 0.5

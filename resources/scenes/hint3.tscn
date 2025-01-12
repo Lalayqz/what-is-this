@@ -12,7 +12,7 @@ offset_bottom = 200.0
 layout_mode = 2
 theme = ExtResource("1_lvnlf")
 bbcode_enabled = true
-text = "[center][u][i]It has been 60 minutes! Here's a final hint (%s to reveal):[/i][/u][/center]"
+text = "[center][u][i]It has been 40 minutes! Here's a final hint (%s to reveal):[/i][/u][/center]"
 fit_content = true
 
 [node name="Line2" type="CenterContainer" parent="."]

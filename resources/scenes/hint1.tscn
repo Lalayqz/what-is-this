@@ -12,7 +12,7 @@ offset_bottom = 200.0
 layout_mode = 2
 theme = ExtResource("1_b10io")
 bbcode_enabled = true
-text = "[center][u][i]You haven't solved the puzzle in 15 minutes, so here's a hint (%s to reveal):[/i][/u][/center]"
+text = "[center][u][i]You haven't solved the puzzle in 10 minutes, so here's a hint (%s to reveal):[/i][/u][/center]"
 fit_content = true
 
 [node name="Line2" type="CenterContainer" parent="."]

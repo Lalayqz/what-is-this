@@ -121,7 +121,7 @@ func check_answer() -> void:
 	answer_check_in_queue = false
 	
 	if len(word) == len(ANSWER):
-		if word == ANSWER:
+		if word.to_lower() == ANSWER.to_lower():
 			answer_answered.emit()
 			
 			is_solved = true

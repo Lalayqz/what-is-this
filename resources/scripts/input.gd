@@ -8,7 +8,6 @@ const DEFAULT_COLOR = Color(0xdbc1afff)
 const WRONG_COLOR = Color(0xcf6a4fff)
 const CORRECT_COLOR = Color(0xb2af5cff)
 const MAX_TAP_HOLD_TIME = 0.2
-@onready var max_word_length = len(get_children())
 @onready var wrong_buzz = preload("res://resources/sounds/wrong.wav")
 @onready var correct_sound = preload("res://resources/sounds/correct.wav")
 var word = ''
@@ -21,8 +20,10 @@ var answer_check_in_queue = false
 
 
 func _ready() -> void:
-	for letter in get_children():
-		input_letters.append(letter.get_node('Letter/Letter/Letter'))
+	for character in ANSWER:
+		var letter_node = load("res://resources/scenes/letter.tscn").instantiate()
+		add_child(letter_node)
+		input_letters.append(letter_node.get_node('Letter/Letter/Letter'))
 
 
 func _input(event):
@@ -88,14 +89,14 @@ func _process(delta: float) -> void:
 
 # Returns false if nothing is appended.
 func append_to_input(string) -> bool:
-	if len(word) == max_word_length:
+	if len(word) == len(ANSWER):
 		return false
 	
 	for character in string:
 		var lower_character = character.to_lower()
 		if lower_character >= 'a' and character <= 'z':
 			word += lower_character
-	word = word.left(max_word_length)
+	word = word.left(len(ANSWER))
 	if len(word) > 0:
 		word[0] = word[0].to_upper()
 	return true
@@ -119,7 +120,7 @@ func set_letter(container, letter) -> void:
 func check_answer() -> void:
 	answer_check_in_queue = false
 	
-	if len(word) == max_word_length:
+	if len(word) == len(ANSWER):
 		if word == ANSWER:
 			answer_answered.emit()
 			

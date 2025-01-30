@@ -10,6 +10,7 @@ extends Node
 func _ready() -> void:
 	$Border.custom_minimum_size = texture_of_the_thing.get_size()
 	pixel_display.custom_minimum_size = texture_of_the_thing.get_size()
+	$Border/PixelDisplay.size = texture_of_the_thing.get_size()
 
 func _input(event) -> void:
 	if event is InputEventMouseMotion:
